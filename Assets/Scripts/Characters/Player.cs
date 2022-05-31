@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static Player Instance;
+    [System.NonSerialized] public static Player Instance;
 
     [SerializeField] private float mouseDamping;
 
-    private Movement Movement;
+    private Movement movement;
 
-    private Gun GunController;
+    private Gun gunController;
 
-    private Melee Melee;
+    private Melee melee;
 
     private Camera cam;
 
@@ -35,16 +35,16 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Movement = GetComponent<Movement>();
+        movement = GetComponent<Movement>();
 
-        Melee = GetComponent<Melee>();
+        melee = GetComponent<Melee>();
 
         animator = transform.GetChild(0).GetComponent<Animator>();
 
         cam = Camera.main;
 
         gun = transform.GetChild(1);
-        GunController = gun.GetComponent<Gun>();
+        gunController = gun.GetComponent<Gun>();
     }
 
     void Update()
@@ -58,46 +58,44 @@ public class Player : MonoBehaviour
         CheckHitting();
     }
 
-    // Gets input from axes and calls function on movement to move the player
+    // Gets input from axes and calls move
     private void MovePlayer()
     {
         Vector3 movementInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        Movement.Move(movementInput);
+        movement.Move(movementInput);
     }
 
     // Find direction to mouse, converts to angle about z axis and rotates gun
     private Quaternion RotateGunToMouse()
     {
         Vector3 worldMousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = worldMousePosition - transform.position;
+        Vector3 directionToMouse = worldMousePosition - transform.position;
 
-        float targetZRot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float targetZRot = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
         float zRot = Mathf.Lerp(gun.rotation.eulerAngles.z, targetZRot, mouseDamping);
-        Quaternion rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, zRot));
 
+        Quaternion rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, zRot));
         gun.rotation = rotation;
 
         return rotation;
     }
 
-    // Checks mouse input and calls method on gun controller to shoot with precise direction
+    // Checks mouse input and calls shoot with accurate direction
     private void CheckShooting(Quaternion direction)
     {
         if (Input.GetMouseButton(0))
         {
-            GunController.Shoot(direction, true);
+            gunController.Shoot(direction, true);
         }
     }
 
-    // Checks mouse input and calls method on melee to hit nearby objects
+    // Checks mouse input and calls hit
     private void CheckHitting()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Melee.Hit();
-
-            animator.SetTrigger("Hit");
+            melee.Hit();
         }
     }
 }

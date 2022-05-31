@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1072161180965331704}
   - component: {fileID: 1072161180965331707}
   - component: {fileID: 1072161180965331706}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Grunt Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,8 @@ GameObject:
   - component: {fileID: 1072161181312049615}
   - component: {fileID: 1072161181312049457}
   - component: {fileID: 1072161181312049614}
-  m_Layer: 0
+  - component: {fileID: 1249825031}
+  m_Layer: 10
   m_Name: Grunt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8640bba9e8327c64283ed0812154a2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
 --- !u!114 &1072161181312049615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c1d6d4235a2804fbba67b5bc2c08e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 2
 --- !u!50 &1072161181312049457
 Rigidbody2D:
   serializedVersion: 4
@@ -224,3 +224,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.26, y: 0.61}
   m_EdgeRadius: 0
+--- !u!114 &1249825031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072161181312049611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af462459c0069449b73f5530f310b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitRadius: 1
+  hitAnimation: {fileID: 7400000, guid: c2285336d12cf5e4ead7c7f320db259f, type: 2}
+  damage: 1
+  animationBuffer: 0.5

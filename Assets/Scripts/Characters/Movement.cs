@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed;
-
     [System.NonSerialized] public bool active = true;
+
+    [SerializeField] private float movementSpeed;
 
     private Rigidbody2D rb;
 
@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Normalises input if necessary and applys to transform
+    // Normalises input if necessary and applies to the transform
     public void Move(Vector3 input)
     {
         if (active)
@@ -25,9 +25,9 @@ public class Movement : MonoBehaviour
                 input.Normalize();
             }
 
-            Vector2 movement = input * movementSpeed * Time.fixedDeltaTime;
+            Vector2 movementInput = input * movementSpeed * Time.fixedDeltaTime;
 
-            rb.MovePosition(rb.position + movement);
+            rb.MovePosition(rb.position + movementInput);
         }
     }
 }

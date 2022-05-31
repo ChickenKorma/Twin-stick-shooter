@@ -4,23 +4,33 @@ using UnityEngine;
 
 public class Grunt : MonoBehaviour
 {
-    [SerializeField] private float damage;
+    private Movement movement;
 
-    private Movement Movement;
+    private Melee melee;
 
     private Transform player;
 
     void Start()
     {
-        Movement = GetComponent<Movement>();
+        movement = GetComponent<Movement>();
+
+        melee = GetComponent<Melee>();
 
         player = Player.Instance.transform;
     }
 
     void Update()
     {
-        Vector3 directionToPlayer = player.position - transform.position;
+        // Finds direction towards player, calls move in that direction and hit if close enough
+        Vector3 directionToPlayer = player.position - transform.position;      
 
-        Movement.Move(directionToPlayer);
+        if(directionToPlayer.magnitude <= melee.hitRadius)
+        {
+            melee.Hit();
+        }
+        else
+        {
+            movement.Move(directionToPlayer);
+        }
     }
 }

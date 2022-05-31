@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyOnStateExit : StateMachineBehaviour
 {
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    // Destroys the parent game object
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Destroy(animator.transform.parent.gameObject);

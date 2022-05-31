@@ -6,11 +6,11 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private GunState defaultState;
 
-    private float lastShot, fireRate;
+    private GameObject projectile;
 
     private Transform barrel;
 
-    private GameObject projectile;
+    private float lastShot, fireRate;
 
     private void Start()
     {
@@ -19,37 +19,39 @@ public class Gun : MonoBehaviour
         lastShot = Time.timeSinceLevelLoad - fireRate;
 
         projectile = defaultState.projectile;
-
         fireRate = defaultState.fireRate;
     }
 
+    // Checks if gun can fire again, instantiates the projectile game object and sets it to the player or enemy projectiles layer
     public void Shoot(Quaternion direction, bool fromPlayer)
     {
         if (Time.timeSinceLevelLoad > lastShot + fireRate)
         {
             lastShot = Time.timeSinceLevelLoad;
 
-            GameObject instance = Instantiate(projectile, barrel.position, direction);
+            GameObject projectileInstance = Instantiate(projectile, barrel.position, direction);
 
             if (fromPlayer)
             {
-                instance.layer = 7;
+                projectileInstance.layer = 7;
             }
             else
             {
-                instance.layer = 6;
+                projectileInstance.layer = 6;
             }
         }
     }
 
-    public void UpdateGun(GunState state)
+    // Updates the gun information based on input GunState
+    public void UpdateGun(GunState newState)
     {
-        projectile = state.projectile;
+        projectile = newState.projectile;
 
-        fireRate = state.fireRate;
+        fireRate = newState.fireRate;
     }
 }
 
+// Custom class to hold all gun information
 [System.Serializable]
 public class GunState
 {
@@ -57,10 +59,10 @@ public class GunState
 
     public float fireRate;
 
-    public GunState(GameObject projectileObj, float fireRateNo)
+    public GunState(GameObject newProjectile, float newFireRate)
     {
-        projectile = projectileObj;
+        projectile = newProjectile;
 
-        fireRate = fireRateNo;
+        fireRate = newFireRate;
     }
 }

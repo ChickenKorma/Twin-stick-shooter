@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 6643775803940868865}
   - component: {fileID: 6643775803940868866}
   - component: {fileID: 6643775803940868871}
+  - component: {fileID: 934167080}
   m_Layer: 12
   m_Name: Explosive Barrel
   m_TagString: Untagged
@@ -196,3 +197,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 2
+--- !u!114 &934167080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6643775803940868867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af462459c0069449b73f5530f310b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  hitRadius: 1
+  hitRate: 0

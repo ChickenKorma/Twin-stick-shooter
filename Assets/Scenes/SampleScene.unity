@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149d10a1bb90317438cdc92fdd1b61fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAdd: 5
+  heal: 0
 --- !u!58 &89029290
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -718,6 +718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1079486760}
+  - component: {fileID: 1079486759}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -725,6 +726,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1079486759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079486758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71d66d5e4370d84ab5bd235b0a53317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1079486760
 Transform:
   m_ObjectHideFlags: 0
@@ -733,7 +746,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1079486758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7549436, y: 0.67304695, z: -15.192334}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -946,18 +959,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99577a9d3897ed409f26742db020378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunLevel: 0
-  states:
-  - projectile: {fileID: 6433843476052074183, guid: 46b54f833db6d9944bf706743ff81cae, type: 3}
-    fireRate: 0.2
-  - projectile: {fileID: 6433843476052074183, guid: 46b54f833db6d9944bf706743ff81cae, type: 3}
-    fireRate: 0.15
-  - projectile: {fileID: 6433843476052074183, guid: 46b54f833db6d9944bf706743ff81cae, type: 3}
-    fireRate: 0.1
-  - projectile: {fileID: 6433843476052074183, guid: 46b54f833db6d9944bf706743ff81cae, type: 3}
-    fireRate: 0.05
-  - projectile: {fileID: 6433843476052074183, guid: 46b54f833db6d9944bf706743ff81cae, type: 3}
-    fireRate: 0.01
+  currentGunLevel: 0
+  gunLevels: []
 --- !u!114 &1378702859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1313,7 +1316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  health: 0
 --- !u!50 &1533933318
 Rigidbody2D:
   serializedVersion: 4
@@ -1373,9 +1375,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af462459c0069449b73f5530f310b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitRadius: 1.25
+  hitAnimation: {fileID: 7400000, guid: 653f1b9f164f16d47b182b0635747b6a, type: 2}
   damage: 2
-  hitRadius: 2
-  hitRate: 1
+  animationBuffer: 0.1
 --- !u!1 &1582420099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,4 +1625,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthText: {fileID: 1133026605}
-  gunText: {fileID: 935296000}
+  gunLevelText: {fileID: 935296000}

@@ -4,21 +4,11 @@ using UnityEngine;
 
 public class ApplyDamageOnStateEnter : StateMachineBehaviour
 {
-    [SerializeField] private float damageRadius, damage;
-
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    // Gets melee script on parent object and calls hit
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(animator.transform.position, damageRadius);
+        Melee melee = animator.transform.parent.GetComponent<Melee>();
 
-        foreach(Collider2D hit in hits)
-        {
-            Destructible obj = hit.transform.GetComponent<Destructible>();
-
-            if(obj != null)
-            {
-                obj.ApplyDamage(damage);
-            }
-        }
+        melee.Hit();
     }
 }

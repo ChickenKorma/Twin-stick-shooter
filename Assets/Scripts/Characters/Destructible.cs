@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Destructible : MonoBehaviour
 {
+    [System.NonSerialized] public float health;
+
     [SerializeField] private float maxHealth;
 
     private Animator animator;
-
-    public float health;
 
     private void Start()
     {
@@ -17,14 +17,14 @@ public class Destructible : MonoBehaviour
         health = maxHealth;
     }
 
-    // Reduces object health by the projectile damage and checks to see if it is dead
+    // Reduces object health by the input damage and checks to see if it is dead, then applies correct animation trigger
     public void ApplyDamage(float damage)
     {
         health -= damage;
 
         if (health <= 0.0f)
         {
-            Movement movement = transform.GetComponent<Movement>();
+            Movement movement = GetComponent<Movement>();
 
             if(movement != null)
             {
@@ -35,13 +35,14 @@ public class Destructible : MonoBehaviour
         }
         else
         {
-            animator.SetTrigger("Hurt");
+            animator.SetTrigger("Damage");
         }
     }
 
-    public void AddHealth(float healthAdded)
+    // Increases object health by input amount and then clamps beneath max health
+    public void AddHealth(float heal)
     {
-        health += healthAdded;
+        health += heal;
 
         health = Mathf.Clamp(health, 0.0f, maxHealth);
     }

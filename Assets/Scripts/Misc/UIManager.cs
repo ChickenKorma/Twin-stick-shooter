@@ -5,23 +5,23 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private Text healthText, gunText;
+    [SerializeField] private Text healthText, gunLevelText;
 
     private Destructible playerDestructible;
 
-    private PlayerGun gun;
+    private PlayerGun playerGun;
 
     void Start()
     {
         playerDestructible = Player.Instance.transform.GetComponent<Destructible>();
 
-        gun = PlayerGun.Instance;
+        playerGun = PlayerGun.Instance;
     }
 
     void Update()
     {
         healthText.text = "Health: " + playerDestructible.health;
 
-        gunText.text = "Gun Power: " + gun.gunLevel;
+        gunLevelText.text = "Gun Power: " + playerGun.currentGunLevel;
     }
 }

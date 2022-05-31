@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class PlayerPickup : MonoBehaviour
 {
-    [SerializeField] private float healthAdd;
+    [SerializeField] private float heal;
 
-    private Destructible player;
+    private Destructible playerDestructible;
 
     private void Start()
     {
-        player = transform.parent.GetComponent<Destructible>();
+        playerDestructible = transform.parent.GetComponent<Destructible>();
     }
 
+    // Checks type of pickup and calls appropriate function, then destroys itself
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Health"))
         {
-            player.AddHealth(healthAdd);
+            playerDestructible.AddHealth(heal);
 
             Destroy(collision.gameObject);
         }
