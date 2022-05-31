@@ -100,4 +100,9 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Hit");
         }
     }
+
+    public void AddHealth()
+    {
+
+    }
 }

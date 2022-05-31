@@ -8,7 +8,7 @@ public class Destructible : MonoBehaviour
 
     private Animator animator;
 
-    private float health;
+    public float health;
 
     private void Start()
     {
@@ -33,5 +33,16 @@ public class Destructible : MonoBehaviour
 
             animator.SetTrigger("Death");
         }
+        else
+        {
+            animator.SetTrigger("Hurt");
+        }
+    }
+
+    public void AddHealth(float healthAdded)
+    {
+        health += healthAdded;
+
+        health = Mathf.Clamp(health, 0.0f, maxHealth);
     }
 }
